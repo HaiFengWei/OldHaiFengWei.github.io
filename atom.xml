@@ -4,7 +4,7 @@
   <title><![CDATA[haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-04-26T22:23:20+08:00</updated>
+  <updated>2017-04-26T22:28:51+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Category]]></title>
-    <link href="http://haifengwei.github.io/blog/2017/04/26/category/"/>
-    <updated>2017-04-26T22:04:49+08:00</updated>
-    <id>http://haifengwei.github.io/blog/2017/04/26/category</id>
-    <content type="html"><![CDATA[<p>asdbjaskhbdkhjbkhj</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[用Octopress和GitHub搭建个人博客遇到的坑]]></title>
