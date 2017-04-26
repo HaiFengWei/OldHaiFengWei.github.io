@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://haifengwei.github.io/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-04-26T09:39:14+08:00</updated>
+  <updated>2017-04-26T09:46:36+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,9 @@
     <link href="http://haifengwei.github.io/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng/"/>
     <updated>2017-04-26T09:36:38+08:00</updated>
     <id>http://haifengwei.github.io/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng</id>
-    <content type="html"><![CDATA[<p>/Users/weihaifeng/octopress/source/_posts/2017-04-26-yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng.markdown</p>
+    <content type="html"><![CDATA[<p>网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的坑。</p>
+
+<p>坑一、GithubPage部署时执行<code>rake deploy</code>报错：</p>
 ]]></content>
   </entry>
   
