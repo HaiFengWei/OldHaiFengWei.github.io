@@ -47,7 +47,7 @@ categories: octopress
  <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-    {\% tag_cloud font-size: 90-210%, limit: 10, style: para \%}
+    \{% tag_cloud font-size: 90-210%, limit: 10, style: para %}
   </ul>
 </section>
  ```
@@ -60,7 +60,7 @@ title: Categories
 navbar: Categories
 footer: false
 ---
-{\% category_list font-size: 90-210%, limit: 1000, style: para \%}
+\{% category_list font-size: 90-210%, limit: 1000, style: para %}
 ```
 
 
