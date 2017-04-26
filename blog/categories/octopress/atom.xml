@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[haifeng's blog]]></title>
-  <link href="http://haifengwei.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Octopress | haifeng's blog]]></title>
+  <link href="http://haifengwei.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
   <updated>2017-04-26T21:32:33+08:00</updated>
   <id>http://haifengwei.github.io/</id>
