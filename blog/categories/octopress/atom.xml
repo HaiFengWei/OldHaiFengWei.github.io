@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-04-26T23:56:01+08:00</updated>
+  <updated>2017-04-26T23:59:18+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -59,7 +59,7 @@
 <p> <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-    
+    {\% tag_cloud font-size: 90-210%, limit: 10, style: para \%}
   </ul>
 </section>
  <code>
@@ -71,8 +71,7 @@ title: Categories
 navbar: Categories
 footer: false
 ---
-<li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
-
+{\% category_list font-size: 90-210%, limit: 1000, style: para \%}
 </code></pre>
 
 <p>没想到还就成了。</p>
