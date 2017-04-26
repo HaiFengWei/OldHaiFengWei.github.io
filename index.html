@@ -9,8 +9,7 @@
   <meta name="author" content="haifeng">
 
   
-  <meta name="description" content="网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的坑。 坑一、GithubPage部署时执行rake deploy报错：
-">
+  <meta name="description" content="网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的坑。 坑一、GithubPage部署时执行rake deploy时报错： 错误信息有这么一句Updates were rejected because the tip of your current &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -39,7 +38,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">haifeng's blog</a></h1>
   
-    <h2>随便写写，记记自己想记得</h2>
+    <h2>随便写写</h2>
   
 </hgroup>
 
@@ -90,7 +89,12 @@
 
   <div class="entry-content"><p>网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的坑。</p>
 
-<p>坑一、GithubPage部署时执行<code>rake deploy</code>报错：</p>
+<p>坑一、GithubPage部署时执行<code>rake deploy</code>时报错：</p>
+
+<p>错误信息有这么一句<code>Updates were rejected because the tip of your current branch is behind</code>
+这个错误是我在创建仓库时手贱将<code>Initialize this repository with a README</code>这个选项给选中了，这样会导致本地当前版本低于服务端的版本，执行<code>rake deploy</code>发布博文到GitHub Pages失败</p>
+
+<p> <img src="https://haifengwei.github.io/images/Snip20170426_2.png" alt="示例图" /></p>
 </div>
   
   
