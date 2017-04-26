@@ -126,11 +126,71 @@
 
 <div class="entry-content clearfix" itemprop="articleBody description"><p>网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的坑，如有人遇到相同问题可以参考一下😁。<!--more--></p>
 
-<p>坑一、GithubPage部署时执行<code>rake deploy</code>时报错：
-错误信息有这么一句<code>Updates were rejected because the tip of your current branch is behind</code>
+<h4>坑一、GithubPage部署时执行<code>rake deploy</code>时报错：</h4>
+
+<p>错误信息有这么一句<code>Updates were rejected because the tip of your current branch is behind</code>
 这个错误是我在创建仓库时手贱将<code>Initialize this repository with a README</code>这个选项给选中了，这样会导致本地当前版本低于服务端的版本，执行<code>rake deploy</code>发布博文到GitHub Pages失败</p>
 
 <p> <img src="https://haifengwei.github.io/images/Snip20170426_2.png" alt="图片" /></p>
+
+<h3>坑二、在头部导航栏添加Categories:</h3>
+
+<p>1、设置导航栏</p>
+
+<p>导航栏的设置在<code>source\_includes\custom\navigation.html</code>
+我们可以将Blog和Archives修改为首页和归档，也可以在此添加一个标签页，此时应使用命令<code>rake new_page['about']</code>创建一个页面，页面路径为<code>source\about\index.markdown</code>;
+修改后的文件如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;ul class="main-navigation"&gt; 
+</span><span class='line'>  &lt;li&gt;&lt;a href="/"&gt;首页&lt;/a&gt;&lt;/li&gt; 
+</span><span class='line'>  &lt;li&gt;&lt;a href="/blog/archives"&gt;归档&lt;/a&gt;&lt;/li&gt; 
+</span><span class='line'>  &lt;li&gt;&lt;a href="/about"&gt;关于&lt;/a&gt;&lt;/li&gt; 
+</span><span class='line'>&lt;/ul&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2、生成Categories</p>
+
+<p>可以参考下<a href="http://fwhyy.com/2013/05/octopress-blog-setting/">《Octopress博客设置》</a> 、<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">《为octopress添加分类(category)列表》</a>和问度娘（✿◡‿◡）</p>
+
+<p>3、在头部导航栏添加Categories</p>
+
+<p>百度了一下，全都是说怎么在侧边导航栏怎么添加Categories（老铁，扎心了）。</p>
+
+<p>于是我到处找博文看，就这么找了半天终于看到这么一篇文章<a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">《为octopress添加tag cloud》</a>和，其中有这么一段代码</p>
+
+<pre><code class="`"> &lt;section&gt;
+  &lt;h1&gt;Tags&lt;/h1&gt;
+  &lt;ul class="tag-cloud"&gt;
+
+  &lt;/ul&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p> 感觉有点像，于是我就在<code>source\Categories\index.markdown</code>里写了一这么段东西</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---
+</span><span class='line'>layout: page
+</span><span class='line'>title: Categories
+</span><span class='line'>navbar: Categories
+</span><span class='line'>footer: false
+</span><span class='line'>---
+</span><span class='line'><li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>没想到还就成了。</p>
 </div>
 
 
