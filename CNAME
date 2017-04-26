@@ -1,3 +1,2 @@
-echo ‘seapeak.me’  >> source/CNAME
-OR
-echo 'www.seapeak.me'  >> source/CNAME
+seapeak.me  >> source/CNAME
+
