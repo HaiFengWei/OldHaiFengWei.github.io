@@ -118,7 +118,14 @@
         </header>
       
       <div class="entry-content">
-        <p><li class='category'><a href='/#{category_url}/'>#{category} (#{posts_in_category})</a></li></p>
+        <p> categories = context.registers[:site].categories.keys
+      categories.sort.each do |category|
+        posts_in_category = context.registers[:site].categories[category].size
+        category_dir = context.registers[:site].config[&lsquo;category_dir&rsquo;]
+        category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, &lsquo;-&rsquo;).gsub(/-{2,}/, &lsquo;-&rsquo;).downcase)</p>
+
+<pre><code>     &lt;li class='category'&gt;&lt;a href='/#{category_url}/'&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;
+</code></pre>
 
       </div>
       
