@@ -4,7 +4,7 @@
   <title><![CDATA[haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-04-27T11:10:12+08:00</updated>
+  <updated>2017-04-27T11:13:40+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -68,7 +68,9 @@
 </ul>
 
 
-<h3>六、Layer支持继承，支持添加Sublayer，支持对sublayer进行层次调整</h3>
+<h3>六、CLayer的Sublayer</h3>
+
+<p>      CLayer支持继承，支持添加Sublayer，支持对sublayer进行层次调整</p>
 
 <ul>
 <li>CAEmitterLayer            发射器层，用来控制粒子效果</li>
