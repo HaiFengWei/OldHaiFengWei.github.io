@@ -22,8 +22,9 @@ categories: iOS
       
 ![关系图](http://cc.cocimg.com/api/uploads/20161204/1480865231251244.png)
 ###四、anchorPoint和position
-   anchorPoint和position和UIView不同，Layer主要由三个属性来设置位置（极少用```Frame：bounds ```－  设置大小）
+   和UIView不同，Layer主要由三个属性来设置位置（极少用```Frame： ```）
 
+- bounds                 设置大小
 - anchorPoint         设置锚点（锚点对后续的layer动画有很大影响）
 - position                锚点在superLayer中的位置
 
