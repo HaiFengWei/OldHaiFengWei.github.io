@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ios | haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-04-27T11:13:40+08:00</updated>
+  <updated>2017-04-27T15:43:25+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -14,13 +14,108 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Quartz 2D（一）)]]></title>
+    <link href="http://haifengwei.github.io/blog/2017/04/27/quartz-2d(%5B%3F%5D-)/"/>
+    <updated>2017-04-27T13:01:44+08:00</updated>
+    <id>http://haifengwei.github.io/blog/2017/04/27/quartz-2d([?]-)</id>
+    <content type="html"><![CDATA[<p>     Q：Quartz 2D是什么，有什么用?<br/>     A：Quartz 2D是一个二维图形绘制引擎，支持iOS环境和Mac OS X环境。<!--more-->我们可以使用Quartz 2D API来实现许多功能，如基本路径的绘制、透明度、描影、绘制阴影、透明层、颜色管理、反锯齿、PDF文档生成和PDF元数据访问。在需要的时候，Quartz 2D还可以借助图形硬件的功能。</p>
+
+<h3>图形上下文</h3>
+
+<p>     在利用Quartz 2D绘图之前我们需要对图形上下文有个简单的了解。图形上下文(Graphics Context)是一个CGContextRef类型的数据，它的作用可分为2点：</p>
+
+<ul>
+<li>保存绘图信息、绘图状态</li>
+<li>决定绘制的输出目标(绘制到什么地⽅去?) (输出目标可以是PDF⽂文件、Bitmap或者显示器的窗口上)
+<img src="http://images.cnitblog.com/i/450136/201406/092233140776524.png" alt="示例图" />
+相同的⼀套绘图序列,指定不同的Graphics Context,就可将相同的图像绘制到不同的目标上
+<img src="http://images.cnitblog.com/i/450136/201406/092235089676225.png" alt="示例图" /></li>
+</ul>
+
+
+<h3>Quartz 2D绘图基本步骤</h3>
+
+<p>     在iOS中常用的绘图框架就是Quartz 2D，Quartz 2D是Core Graphics框架的一部分，在UIKit中也有很好的封装和集成，我们日常开发时所用到的UIKit中的组件都是由Core Graphics进行绘制的。<br/>     在iOS中绘图一般分为以下几个步骤：</p>
+
+<p>         1.获取图形上下文<br/>         2.创建并设置路径<br/>         3.将路径添加到上下文<br/>         4.设置上下文状态<br/>         5.绘制路径<br/>         6.释放路径</p>
+
+<h3>基本图形绘制</h3>
+
+<p>     View之所以能显示东西,完全是因为它内部有个layer(图层)属性。在View的<code>drawRect:</code>中取得的上下⽂文后,就可以绘制东西到view上。<br/>     在<code>drawRect:</code>方法中取得的是一个Layer Graphics Context,因此,绘制的东西其实是绘制到view的layer上去了<br/>     注意：调用<code>drawRect:</code>会开辟一个新的寄宿图层，对应用性能有一定影响。当然这里主要是说Quartz 2D的用法，可以忽略😑。</p>
+
+<p>     下面自定义一个View继承自UIView，重写drawRect:方法绘制直线说明下绘图的步骤：（直接上代码）：
+     </p>
+
+<pre><code>- (void)drawRect:(CGRect)rect {
+    // 画线条
+    [self drawLineWithRect:rect];
+}
+#pragma mark -
+#pragma mark - DrawLine
+- (void)drawLineWithRect:(CGRect)rect {
+    // 1.取得和当前视图相关联的图形上下文(因为图形上下文决定绘制的输出目标)/
+    // 如果是在drawRect方法中调用UIGraphicsGetCurrentContext方法获取出来的就是Layer的上下文
+    CGContextRef context = UIGraphicsGetCurrentContext();//不需要*,同id
+
+    // 2.绘图(绘制直线), 保存绘图信息
+    // 设置起点
+    CGContextMoveToPoint(context, 20, 100);
+    //设置终点
+    CGContextAddLineToPoint(context, 300, 100);
+
+    /**  设置绘图的状态  **/
+    //设置笔触颜色
+    CGContextSetRGBStrokeColor(context, 1.0, 0, 0, 1);
+    //设置线条的宽度
+    CGContextSetLineWidth(context, 15);
+    //设置顶点样式
+    CGContextSetLineCap(context, kCGLineCapRound);
+    //设置连接点样式
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    //3.渲染（绘制出一条空心的线）
+    CGContextStrokePath(context);
+    //注意线条不能渲染为实心的
+    //    CGContextFillPath(ctx);
+    //设置第二条线
+    //设置第二条线的起点
+    CGContextMoveToPoint(context, 50, 200);
+    //设置第二天线的终点(自动把上一条直线的终点当做起点)
+    CGContextAddLineToPoint(context, 50, 60);
+
+    /**  设置绘图的状态  **/
+    //    CGContextSetRGBStrokeColor(ctx, 1.0, 0.7, 0.3, 1.0);
+    //第二种设置颜色的方式
+    [[UIColor grayColor] set];
+    //设置线条的宽度
+    CGContextSetLineWidth(context, 10);
+    //设置线条的起点和终点的样式
+    CGContextSetLineCap(context, kCGLineCapButt);
+
+    //渲染第二条线的图形到view上
+    //绘制一条空心的线
+    CGContextStrokePath(context);
+
+}
+</code></pre>
+
+<p><img src="https://haifengwei.github.io/images/iOS/Snip20170427_3.png" alt="示例图" /></p>
+
+<p>     至于画一些圆形、矩形、三角形之类的都相似，可以看<a href="https://github.com/HaiFengWei/Quartz2D_Demo">demo</a>,里有详细步骤就不一一写上去了。<br/>     <a href="https://github.com/HaiFengWei/Quartz2D_Demo">点这里进入demo</a></p>
+
+<p>文章参考：<a href="http://www.cnblogs.com/kenshincui/p/3959951.html#basicDraw">《iOS开发系列&ndash;打造自己的“美图秀秀”》</a>、<a href="http://www.cnblogs.com/wendingding/p/3778940.html">《iOS开发UI篇—Quartz2D简单介绍》</a></p>
+
+<p>         </p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[初识CALayer]]></title>
     <link href="http://haifengwei.github.io/blog/2017/04/27/chu-shi-calayer/"/>
     <updated>2017-04-27T10:14:04+08:00</updated>
     <id>http://haifengwei.github.io/blog/2017/04/27/chu-shi-calayer</id>
     <content type="html"><![CDATA[<h3>一、Layer简介</h3>
 
-<p>     CALayer是定义在QuartzCore框架中的(Core Animation)，它是绘图和动画的基础，是在3D空间中的2D平面。CALayer管理的几何（例如rotate，transfrom），内容（image等），和可视属性（backgroundColor，alpha）等信息。<!--more-->CALayer主要通过管理bitmap来维护自己的状态信息，从这一点上来说，Layer可以看作对象模型，因为他们主要用来管理数据。</p>
+<p>     CALayer是定义在QuartzCore框架中的(Core Animation)，它是绘图和动画的基础，在3D空间中的2D平面。CALayer管理的几何（例如rotate，transfrom），内容（image等），和可视属性（backgroundColor，alpha）等信息。<!--more-->CALayer主要通过管理bitmap来维护自己的状态信息，从这一点上来说，Layer可以看作对象模型，因为他们主要用来管理数据。</p>
 
 <h3>二、Layer与bitmap的关系</h3>
 
