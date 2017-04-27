@@ -5,7 +5,6 @@ date: 2017-04-27 10:14:04 +0800
 comments: true
 categories: iOS
 ---
-###一、Layer简介
      CALayer是定义在QuartzCore框架中的(Core Animation)，它是绘图和动画的基础，在3D空间中的2D平面。CALayer管理的几何（例如rotate，transfrom），内容（image等），和可视属性（backgroundColor，alpha）等信息。<!--more-->CALayer主要通过管理bitmap来维护自己的状态信息，从这一点上来说，Layer可以看作对象模型，因为他们主要用来管理数据。
 ###二、Layer与bitmap的关系
       Layer是基于bitmap的，它会捕获View要呈现的内容，然后cache在一个bitmap中，这个bitmap可以看作一个对象。这样每次进行操作，例如平移旋转等，只是bitmap的矩阵运算。
