@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Quartz 2D（一）)"
+title: "Quartz 2D（一）"
 date: 2017-04-27 13:01:44 +0800
 comments: true
 categories: iOS
