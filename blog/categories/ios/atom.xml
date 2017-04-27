@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ios | haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-04-27T11:00:48+08:00</updated>
+  <updated>2017-04-27T11:10:12+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -20,7 +20,7 @@
     <id>http://haifengwei.github.io/blog/2017/04/27/chu-shi-calayer</id>
     <content type="html"><![CDATA[<h3>一、Layer简介</h3>
 
-<p>     CALayer是定义在QuartzCore框架中的(Core Animation)，它是绘图和动画的基础，是在3D空间中的2D平面。CALayer管理的几何（例如rotate，transfrom），内容（image等），和可视属性（backgroundColor，alpha）等信息。CALayer主要通过管理bitmap来维护自己的状态信息，从这一点上来说，Layer可以看作对象模型，因为他们主要用来管理数据。<!--more--></p>
+<p>     CALayer是定义在QuartzCore框架中的(Core Animation)，它是绘图和动画的基础，是在3D空间中的2D平面。CALayer管理的几何（例如rotate，transfrom），内容（image等），和可视属性（backgroundColor，alpha）等信息。<!--more-->CALayer主要通过管理bitmap来维护自己的状态信息，从这一点上来说，Layer可以看作对象模型，因为他们主要用来管理数据。</p>
 
 <h3>二、Layer与bitmap的关系</h3>
 
@@ -40,9 +40,10 @@
 
 <h3>四、anchorPoint和position</h3>
 
-<p>   anchorPoint和position和UIView不同，Layer主要由三个属性来设置位置（极少用<code>Frame：bounds</code>－  设置大小）</p>
+<p>   和UIView不同，Layer主要由三个属性来设置位置（极少用<code>Frame：</code>）</p>
 
 <ul>
+<li>bounds                 设置大小</li>
 <li>anchorPoint         设置锚点（锚点对后续的layer动画有很大影响）</li>
 <li>position                锚点在superLayer中的位置</li>
 </ul>
