@@ -43,7 +43,8 @@ categories: iOS
 - removeFromSuperlayer
 - replaceSublayer:with:
 
-###六、Layer支持继承，支持添加Sublayer，支持对sublayer进行层次调整
+###六、CLayer的Sublayer
+      CLayer支持继承，支持添加Sublayer，支持对sublayer进行层次调整
 
 - CAEmitterLayer            发射器层，用来控制粒子效果
 - CAGradientLayer           梯度层，颜色渐变
