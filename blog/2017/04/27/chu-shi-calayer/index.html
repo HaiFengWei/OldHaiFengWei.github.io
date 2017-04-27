@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>用Octopress和GitHub搭建个人博客遇到的坑 - haifeng's blog</title>
+  <title>初识CALayer - haifeng's blog</title>
   <meta name="author" content="haifeng">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://haifengwei.github.io/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng/">
+  <link rel="canonical" href="http://haifengwei.github.io/blog/2017/04/27/chu-shi-calayer/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="haifeng's blog" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://haifengwei.github.io/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng/">
-  <meta property="og:title" content="用Octopress和GitHub搭建个人博客遇到的坑 - haifeng's blog">
+  <meta property="og:url" content="http://haifengwei.github.io/blog/2017/04/27/chu-shi-calayer/">
+  <meta property="og:title" content="初识CALayer - haifeng's blog">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -111,85 +111,84 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-04-26T09:36:38+08:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 26 Apr 2017,  9:36 AM</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-04-27T10:14:04+08:00"  data-updated="true" itemprop="datePublished dateCreated">Thu 27 Apr 2017, 10:14 AM</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        用Octopress和GitHub搭建个人博客遇到的坑
+        初识CALayer
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><p>网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的坑，如有人遇到相同问题可以参考一下😁。<!--more--></p>
+<div class="entry-content clearfix" itemprop="articleBody description"><h3>一、Layer简介</h3>
 
-<h4>坑一、GithubPage部署时执行<code>rake deploy</code>时报错：</h4>
+<p>     CALayer是定义在QuartzCore框架中的(Core Animation)，它是绘图和动画的基础，是在3D空间中的2D平面。CALayer管理的几何（例如rotate，transfrom），内容（image等），和可视属性（backgroundColor，alpha）等信息。CALayer主要通过管理bitmap来维护自己的状态信息，从这一点上来说，Layer可以看作对象模型，因为他们主要用来管理数据。</p>
 
-<p>错误信息有这么一句<code>Updates were rejected because the tip of your current branch is behind</code>
-这个错误是我在创建仓库时手贱将<code>Initialize this repository with a README</code>这个选项给选中了，这样会导致本地当前版本低于服务端的版本，执行<code>rake deploy</code>发布博文到GitHub Pages失败</p>
+<h3>二、Layer与bitmap的关系</h3>
 
-<p> <img src="https://haifengwei.github.io/images/Snip20170426_2.png" alt="图片" /></p>
+<p>      Layer是基于bitmap的，它会捕获View要呈现的内容，然后cache在一个bitmap中，这个bitmap可以看作一个对象。这样每次进行操作，例如平移旋转等，只是bitmap的矩阵运算。</p>
 
-<h3>坑二、在头部导航栏添加Categories:</h3>
+<p>      由于基于Layer的绘制是处理静态的Bitmap的，而bitmap的处理又是GPU所擅长的，所以它的效率要比基于View绘制的高很多，因为基于View绘制的每次都要进行drawRect的调用重新绘制。</p>
 
-<p>1、设置导航栏</p>
+<h3>三、UIView与CALayer的关系</h3>
 
-<p>导航栏的设置在<code>source\_includes\custom\navigation.html</code>
-我们可以将Blog和Archives修改为首页和归档，也可以在此添加一个标签页，此时应使用命令<code>rake new_page['about']</code>创建一个页面，页面路径为<code>source\about\index.markdown</code>;
-修改后的文件如下：</p>
+<p>      既然说CALayer ，那么UIView肯定要提一下， UIView是iOS系统中界面元素的基础，所有的界面元素都继承自它。在创建UIView对象时，UIView内部会自动创建一个图层(即CALayer对象)，通过UIView的layer属性可以访问这个层。UIView本身更像是一个CALayer的管理器，访问它的跟绘图和跟坐标有关的属性，例如frame，bounds等等，实际上内部都是在访问它所包含的CALayer的相关属性。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;ul class="main-navigation"&gt; 
-</span><span class='line'>  &lt;li&gt;&lt;a href="/"&gt;首页&lt;/a&gt;&lt;/li&gt; 
-</span><span class='line'>  &lt;li&gt;&lt;a href="/blog/archives"&gt;归档&lt;/a&gt;&lt;/li&gt; 
-</span><span class='line'>  &lt;li&gt;&lt;a href="/about"&gt;关于&lt;/a&gt;&lt;/li&gt; 
-</span><span class='line'>&lt;/ul&gt;</span></code></pre></td></tr></table></div></figure>
+<p>      另外UIView和CALayer最大的区别就是UIView可以接受用户输入（例如触摸）而CALayer不可以，CALayer单独并不能呈现出任何可视的内容，必须依托于UIView。CALayer只是几何上呈现给用户的东西，它较为轻量，通常采用Cache技术，对资源消耗也较小。</p>
 
+<p>      UIView和CALayer关系图如下：
+      
+<img src="http://cc.cocimg.com/api/uploads/20161204/1480865231251244.png" alt="关系图" /></p>
 
-<p>2、生成Categories</p>
+<h3>四、anchorPoint和position</h3>
 
-<p>可以参考下<a href="http://fwhyy.com/2013/05/octopress-blog-setting/">《Octopress博客设置》</a> 、<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">《为octopress添加分类(category)列表》</a>和问度娘（✿◡‿◡）</p>
+<p>   anchorPoint和position和UIView不同，Layer主要由三个属性来设置位置（极少用<code>Frame：bounds</code>－  设置大小）</p>
 
-<p>3、在头部导航栏添加Categories</p>
-
-<p>百度了一下，全都是说怎么在侧边导航栏怎么添加Categories（老铁，扎心了）。</p>
-
-<p>于是我到处找博文看，就这么找了半天终于看到这么一篇文章<a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">《为octopress添加tag cloud》</a>和，其中有这么一段代码(去掉\)</p>
-
-<pre><code class="`"> &lt;section&gt;
-  &lt;h1&gt;Tags&lt;/h1&gt;
-  &lt;ul class="tag-cloud"&gt;
-    {\% tag_cloud font-size: 90-210%, limit: 10, style: para \%}
-  &lt;/ul&gt;
-&lt;/section&gt;
-</code></pre>
-
-<p> 感觉有点像，于是我就在<code>source\Categories\index.markdown</code>里写了这么一段(去掉\)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>---
-</span><span class='line'>layout: page
-</span><span class='line'>title: Categories
-</span><span class='line'>navbar: Categories
-</span><span class='line'>footer: false
-</span><span class='line'>---
-</span><span class='line'>{\% category_list font-size: 90-210%, limit: 1000, style: para \%}</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>anchorPoint         设置锚点（锚点对后续的layer动画有很大影响）</li>
+<li>position                锚点在superLayer中的位置</li>
+</ul>
 
 
-<p>没想到还就成了。</p>
+<p>      这样说有点抽象，我们看看以下的图就了解了对于iOS来说，坐标系如图，archPoint（x,y）的两个值通常取0.0-1.0,默认值是（0.5，0.5）这里的值可以看作所占用x的比例，比如默认的0.5，0.5就是在x的中间和y的中间。
+￼<img src="http://upload-images.jianshu.io/upload_images/2782212-f61aade513ffd51e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20150110130108359.png" /></p>
+
+<p>      而position则是AnchorPoint在super layer中的位置
+如下图
+<img src="http://upload-images.jianshu.io/upload_images/2782212-071d76aaa3517d68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20150110130534295.png" /></p>
+
+<h3>五、管理Layer内容的几个函数</h3>
+
+<ul>
+<li>addSublayer:</li>
+<li>insertSublayer:above:</li>
+<li>insertSublayer:atIndex:</li>
+<li>insertSublayer:below:</li>
+<li>removeFromSuperlayer</li>
+<li>replaceSublayer:with:</li>
+</ul>
+
+
+<h3>六、Layer支持继承，支持添加Sublayer，支持对sublayer进行层次调整</h3>
+
+<ul>
+<li>CAEmitterLayer            发射器层，用来控制粒子效果</li>
+<li>CAGradientLayer           梯度层，颜色渐变</li>
+<li>CAEAGLayer                用OpenGL ES绘制的层</li>
+<li>CAReplicationLayer      用来自动复制sublayer</li>
+<li>CAScrollLayer              用来管理可滑动的区域</li>
+<li>CAShapeLayer             绘制立体的贝塞尔曲线</li>
+<li>CATextLayer                 可以绘制AttributeString</li>
+<li>CATiledLayer                用来管理一副可以被分割的大图</li>
+<li>CATransformLayer        用来渲染3D layer的层次结构</li>
+</ul>
+
+
+<p>文章参考：<a href="http://blog.csdn.net/hello_hwc?viewmode=contents">《 IOS SDK详解之CALayer（一）》</a>、<a href="http://www.jianshu.com/p/b64f9a1bdd1b">《初探CALayer属性》</a></p>
 </div>
 
 
@@ -218,14 +217,14 @@
     
     <h4>Share this post</h4>
     
-    <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?url=http://haifengwei.github.io/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng/;" 
+    <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?url=http://haifengwei.github.io/blog/2017/04/27/chu-shi-calayer/;" 
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
         <span class="hidden">Twitter</span>
     </a>
-    <a class="fa fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://haifengwei.github.io/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+    <a class="fa fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://haifengwei.github.io/blog/2017/04/27/chu-shi-calayer/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
         <span class="hidden">Facebook</span>
     </a>
-    <a class="fa fa-google-plus" href="https://plus.google.com/share?url=http://haifengwei.github.io/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+    <a class="fa fa-google-plus" href="https://plus.google.com/share?url=http://haifengwei.github.io/blog/2017/04/27/chu-shi-calayer/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
         <span class="hidden">Google+</span>
     </a>
     
@@ -269,13 +268,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-04-26T09:36:38+08:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 26 Apr 2017,  9:36 AM</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-04-27T10:14:04+08:00"  data-updated="true" itemprop="datePublished dateCreated">Thu 27 Apr 2017, 10:14 AM</time>
           <br>
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+    <a class='category' href='/blog/categories/ios/'>ios</a>
   
 </span>
 
@@ -286,15 +285,16 @@
             
             
               
-              <a href="/blog/2017/04/27/chu-shi-calayer/" class="col-xs-12 col-md-4 btn btn-default pull-right" title="Next Post: 初识CALayer">
-                <div class="text-muted">
-                  <small>Next Post</small>
-                </div>
-                <div class="pager-title">
-                  <h4>初识CALayer</h4>
-                </div>
-              </a>
+                <a href="/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng/" class="col-xs-12 col-md-4 btn btn-default" title="Previous Post: 用Octopress和GitHub搭建个人博客遇到的坑"> 
+                  <div class="text-muted">
+                    <small>Previous Post</small>
+                  </div>
+                  <div class="pager-title">
+                    <h4>用Octopress和GitHub搭建个人博客遇到的坑</h4>
+                  </div>
+                </a>
               
+            
             
             
           </div>
