@@ -40,18 +40,18 @@ categories: octopress
 
 百度了一下，全都是说怎么在侧边导航栏怎么添加Categories（老铁，扎心了）。
 
-于是我到处找博文看，就这么找了半天终于看到这么一篇文章[《为octopress添加tag cloud》](http://codemacro.com/2012/07/18/add-tag-to-octopress/)和，其中有这么一段代码
+于是我到处找博文看，就这么找了半天终于看到这么一篇文章[《为octopress添加tag cloud》](http://codemacro.com/2012/07/18/add-tag-to-octopress/)和，其中有这么一段代码（去掉\\）
  
  		
  ```
  <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-    \{% tag_cloud font-size: 90-210%, limit: 10, style: para \%}
+    {\% tag_cloud font-size: 90-210%, limit: 10, style: para \%}
   </ul>
 </section>
  ```
- 感觉有点像，于是我就在```source\Categories\index.markdown```里写了这么一段
+ 感觉有点像，于是我就在```source\Categories\index.markdown```里写了这么一段（去掉\\）
 
 ```
 ---
@@ -60,7 +60,7 @@ title: Categories
 navbar: Categories
 footer: false
 ---
-\{% category_list font-size: 90-210%, limit: 1000, style: para \%}
+{\% category_list font-size: 90-210%, limit: 1000, style: para \%}
 ```
 
 
