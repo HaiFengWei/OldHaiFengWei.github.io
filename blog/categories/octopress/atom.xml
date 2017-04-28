@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-04-28T16:36:47+08:00</updated>
+  <updated>2017-04-28T16:38:23+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -53,17 +53,17 @@
 
 百度了一下，全都是说怎么在侧边导航栏怎么添加Categories（老铁，扎心了）。
 
-于是我到处找博文看，就这么找了半天终于看到这么一篇文章[《为octopress添加tag cloud》](http://codemacro.com/2012/07/18/add-tag-to-octopress/)和，其中有这么一段代码(去掉\\)
+于是我到处找博文看，就这么找了半天终于看到这么一篇文章[《为octopress添加tag cloud》](http://codemacro.com/2012/07/18/add-tag-to-octopress/)和，其中有这么一段代码
 </code></pre>
 
 <p> <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-    {\% tag_cloud font-size: 90-210%, limit: 10, style: para \%}
+    
   </ul>
 </section>
  <code>
- 感觉有点像，于是我就在</code>source\Categories\index.markdown```里写了这么一段(去掉\)</p>
+ 感觉有点像，于是我就在</code>source\Categories\index.markdown```里写了这么一段</p>
 
 <pre><code>---
 layout: page
@@ -71,7 +71,9 @@ title: Categories
 navbar: Categories
 footer: false
 ---
-{\% category_list font-size: 90-210%, limit: 1000, style: para \%}
+\<li class='category'><a href='/blog/categories/ios/'>ios (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
+
 </code></pre>
 
 <p>没想到还就成了。</p>
