@@ -4,7 +4,7 @@
 
 url: http://haifengwei.github.io
 title: haifeng's blog
-subtitle: 随便写写
+subtitle: 写写记记
 author: haifeng
 simple_search: https://www.google.com/search
 description:
@@ -100,3 +100,10 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+# ----------------------- #
+#       添加友言设置        #
+# ----------------------- #
+
+# share_comment
+share_comment: true
