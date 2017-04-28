@@ -22,20 +22,8 @@
 <hr>
 
 <section class="share">
-    {% unless page.sharing == false %}
     <h4>Share this post</h4>
-    {% assign url = page.url|remove:'index.html' %}
-    <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?url={{site.url}}{{url}};" 
-        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="fa fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{site.url}}{{url}}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="fa fa-google-plus" href="https://plus.google.com/share?url={{site.url}}{{url}}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-    {% endunless %}
+    {% include post/sharing_buttons.html %}
 </section>
 {% endif %}
 <!--
