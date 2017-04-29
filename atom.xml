@@ -4,7 +4,7 @@
   <title><![CDATA[haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-04-28T17:02:20+08:00</updated>
+  <updated>2017-04-29T08:36:19+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -274,7 +274,7 @@
 
 <p>     百度了一下，全都是说怎么在侧边导航栏怎么添加Categories（老铁，扎心了）。</p>
 
-<p>     于是我到处找博文看，就这么找了半天终于看到这么一篇文章<a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">《为octopress添加tag cloud》</a>，发现添加云标签的原理是借鉴Categories，既然tag可以添加任意位置，那么Categories也可以。其中<a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">《为octopress添加tag cloud》</a>有这么一段代码（去掉\）</p>
+<p>     于是我到处找博文看，就这么找了半天终于看到这么一篇文章<a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">《为octopress添加tag cloud》</a>，发现添加云标签的原理是借鉴Categories，而且可以添加在任意位置。也就是说tag cloud可以添加在任意位置，那么Categories也可以。其中<a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">《为octopress添加tag cloud》</a>有这么一段代码（去掉\），是为tag cloud写一个页面出来</p>
 
 <pre><code class="`"> &lt;section&gt;
   &lt;h1&gt;Tags&lt;/h1&gt;
@@ -303,6 +303,8 @@
 
 
 <p>没想到还就成了。</p>
+
+<p>     注：本人不懂这方面技术，如有说错的地方，请指正。</p>
 ]]></content>
   </entry>
   
