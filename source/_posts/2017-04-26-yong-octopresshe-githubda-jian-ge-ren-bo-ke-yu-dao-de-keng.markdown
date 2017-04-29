@@ -40,7 +40,7 @@ categories: octopress
 
      百度了一下，全都是说怎么在侧边导航栏怎么添加Categories（老铁，扎心了）。
 
-     于是我到处找博文看，就这么找了半天终于看到这么一篇文章[《为octopress添加tag cloud》](http://codemacro.com/2012/07/18/add-tag-to-octopress/)，发现添加云标签的原理是借鉴Categories，既然tag可以添加任意位置，那么Categories也可以。其中[《为octopress添加tag cloud》](http://codemacro.com/2012/07/18/add-tag-to-octopress/)有这么一段代码（去掉\\）
+     于是我到处找博文看，就这么找了半天终于看到这么一篇文章[《为octopress添加tag cloud》](http://codemacro.com/2012/07/18/add-tag-to-octopress/)，发现添加云标签的原理是借鉴Categories，而且可以添加在任意位置。也就是说tag cloud可以添加在任意位置，那么Categories也可以。其中[《为octopress添加tag cloud》](http://codemacro.com/2012/07/18/add-tag-to-octopress/)有这么一段代码（去掉\\），是为tag cloud写一个页面出来
  
  		
  ```
@@ -65,3 +65,5 @@ footer: false
 
 
 没想到还就成了。
+
+     注：本人不懂这方面技术，如有说错的地方，请指正。
