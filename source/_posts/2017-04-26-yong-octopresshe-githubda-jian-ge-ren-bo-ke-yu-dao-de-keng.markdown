@@ -67,7 +67,7 @@ footer: false
 没想到还就成了。
 
 ###三、如何文章详情页添加评论栏:
-     我这里的评论是用的友言，至于集成友言可参考巧神的[《象写程序一样写博客：搭建基于github的博客》](http://blog.devtang.com/2012/02/10/setup-blog-based-on-github/)，我这里是将```weibo_share```改为```share_comment```。
+     我的评论是用的友言，至于集成友言可参考巧神的[《象写程序一样写博客：搭建基于github的博客》](http://blog.devtang.com/2012/02/10/setup-blog-based-on-github/)，我这里是将```weibo_share```改为```share_comment```。
 
      至于在哪里添加评论栏位置，只是描述一下我的问题，可能对于你们并不一定适用。
 
