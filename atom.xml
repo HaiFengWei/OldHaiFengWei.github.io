@@ -4,7 +4,7 @@
   <title><![CDATA[haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-05-02T10:06:28+08:00</updated>
+  <updated>2017-05-02T10:55:19+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -228,7 +228,7 @@
 </ul>
 
 
-<p>文章参考：<a href="http://blog.csdn.net/hello_hwc?viewmode=contents">《 IOS SDK详解之CALayer（一）》</a>、<a href="http://www.jianshu.com/p/b64f9a1bdd1b">《初探CALayer属性》</a></p>
+<p>参考文章：<a href="http://blog.csdn.net/hello_hwc?viewmode=contents">《 IOS SDK详解之CALayer（一）》</a>、<a href="http://www.jianshu.com/p/b64f9a1bdd1b">《初探CALayer属性》</a></p>
 ]]></content>
   </entry>
   
@@ -237,16 +237,16 @@
     <link href="http://haifengwei.github.io/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng/"/>
     <updated>2017-04-26T09:36:38+08:00</updated>
     <id>http://haifengwei.github.io/blog/2017/04/26/yong-octopresshe-githubda-jian-ge-ren-bo-ke-yu-dao-de-keng</id>
-    <content type="html"><![CDATA[<p>     网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的坑，如有人遇到相同问题可以参考一下😁。<!--more--></p>
+    <content type="html"><![CDATA[<p>     网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的一些问题（注：我认为的坑），如有人遇到相同问题可以参考一下😁。<!--more--></p>
 
-<h4>坑一、GithubPage部署时执行<code>rake deploy</code>时报错：</h4>
+<h4>一、GithubPage部署时执行<code>rake deploy</code>时报错：</h4>
 
 <p>     错误信息有这么一句<code>Updates were rejected because the tip of your current branch is behind</code>
 这个错误是我在创建仓库时手贱将<code>Initialize this repository with a README</code>这个选项给选中了，这样会导致本地当前版本低于服务端的版本，执行<code>rake deploy</code>发布博文到GitHub Pages失败</p>
 
 <p> <img src="https://haifengwei.github.io/images/Snip20170426_2.png" alt="图片" /></p>
 
-<h3>坑二、在头部导航栏添加Categories:</h3>
+<h3>二、在头部导航栏添加Categories:</h3>
 
 <p>1、设置导航栏</p>
 
@@ -304,7 +304,66 @@
 
 <p>没想到还就成了。</p>
 
-<p>     注：本人不懂这方面技术，如有说错的地方，请指正。</p>
+<h3>三、如何文章详情页添加评论栏:</h3>
+
+<p>     我这里的评论是用的友言，至于集成友言可参考巧神的<a href="http://blog.devtang.com/2012/02/10/setup-blog-based-on-github/">《象写程序一样写博客：搭建基于github的博客》</a>，我这里是将<code>weibo_share</code>改为<code>share_comment</code>。</p>
+
+<p>     至于在哪里添加评论栏位置，只是描述一下我的问题，可能对于你们并不一定适用。</p>
+
+<p>     我集成的第三方主题是<a href="https://github.com/bhrigu123/abacus">《abacus theme》</a>，文章详情页是/source/_layouts/post.html，里面可以添加和删除文章详情页的控件（我特么一个一个文件试过来发现的o(╯□╰)o）。那么，添加评论栏也理所当然这里了，于是我修改了下面一段代码</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> &lt;/article&gt;
+</span><span class='line'>    
+</span><span class='line'>      &lt;section&gt;
+</span><span class='line'>        &lt;h2&gt;Comments&lt;/h2&gt;
+</span><span class='line'>        &lt;div id="disqus_thread" aria-live="polite"&gt;<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+&lt;/div&gt;
+</span><span class='line'>      &lt;/section&gt;
+</span><span class='line'>    
+</span><span class='line'>    <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132125"></script>
+<!-- UY END -->
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>     这里主要是在详情页尾添加一句``` <!-- UY BEGIN --></p>
+
+<div id="uyan_frame"></div>
+
+
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132125"></script>
+
+
+<!-- UY END -->
+
+
+<p>```</p>
+
+<p>     另外将/_config.yml里的Comments也设置下，<code>disqus_short_name</code>得值随意写，<code>disqus_show_comment_count</code>值为true（如下）。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Disqus Comments
+</span><span class='line'>disqus_short_name: ******
+</span><span class='line'>disqus_show_comment_count: true</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>四、设置页面和控件的属性位置：</h3>
+
+<p>     /sass里是设置页面和控件的属性位置，至于有什么效果，自己试试就清楚了。
+     </p>
+
+<h6>     注：本人不懂这方面技术，如有错误的地方，请指正。</h6>
 ]]></content>
   </entry>
   
