@@ -5,10 +5,10 @@ date: 2017-04-26 09:36:38 +0800
 comments: true
 categories: octopress
 ---
-     网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的坑，如有人遇到相同问题可以参考一下😁。<!--more-->
+     网上已经有很多关于搭建Octopress的文章，所以我写篇文章目的记录下我搭建blog过程中遇到的一些问题（注：我认为的坑），如有人遇到相同问题可以参考一下😁。<!--more-->
 
 
-####坑一、GithubPage部署时执行```rake deploy```时报错：
+####一、GithubPage部署时执行```rake deploy```时报错：
 
      错误信息有这么一句```Updates were rejected because the tip of your current branch is behind```
 这个错误是我在创建仓库时手贱将```Initialize this repository with a README```这个选项给选中了，这样会导致本地当前版本低于服务端的版本，执行```rake deploy```发布博文到GitHub Pages失败
@@ -16,7 +16,7 @@ categories: octopress
  ![图片](https://haifengwei.github.io/images/Snip20170426_2.png)
  
 
-###坑二、在头部导航栏添加Categories:
+###二、在头部导航栏添加Categories:
  
 1、设置导航栏
 
@@ -66,4 +66,35 @@ footer: false
 
 没想到还就成了。
 
-     注：本人不懂这方面技术，如有说错的地方，请指正。
+###三、如何文章详情页添加评论栏:
+     我这里的评论是用的友言，至于集成友言可参考巧神的[《象写程序一样写博客：搭建基于github的博客》](http://blog.devtang.com/2012/02/10/setup-blog-based-on-github/)，我这里是将```weibo_share```改为```share_comment```。
+
+     至于在哪里添加评论栏位置，只是描述一下我的问题，可能对于你们并不一定适用。
+
+     我集成的第三方主题是[《abacus theme》](https://github.com/bhrigu123/abacus)，文章详情页是/source/_layouts/post.html，里面可以添加和删除文章详情页的控件（我特么一个一个文件试过来发现的o(╯□╰)o）。那么，添加评论栏也理所当然这里了，于是我修改了下面一段代码
+
+```
+ </article>
+    {% if site.disqus_short_name and page.comments == true %}
+      <section>
+        <h2>Comments</h2>
+        <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
+      </section>
+    {% endif %}
+    {% include post/share_comment.html %}
+```
+     这里主要是在详情页尾添加一句``` {% include post/share_comment.html %}```
+
+     另外将/_config.yml里的Comments也设置下，```disqus_short_name```得值随意写，```disqus_show_comment_count```值为true（如下）。
+
+```
+# Disqus Comments
+disqus_short_name: ******
+disqus_show_comment_count: true
+```
+
+###四、设置页面和控件的属性位置：
+     /sass里是设置页面和控件的属性位置，至于有什么效果，自己试试就清楚了。
+     
+
+######     注：本人不懂这方面技术，如有错误的地方，请指正。

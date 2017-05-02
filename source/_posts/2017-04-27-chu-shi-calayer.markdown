@@ -56,4 +56,4 @@ categories: iOS
 
 
 
-文章参考：[《 IOS SDK详解之CALayer（一）》](http://blog.csdn.net/hello_hwc?viewmode=contents)、[《初探CALayer属性》](http://www.jianshu.com/p/b64f9a1bdd1b) 
+参考文章：[《 IOS SDK详解之CALayer（一）》](http://blog.csdn.net/hello_hwc?viewmode=contents)、[《初探CALayer属性》](http://www.jianshu.com/p/b64f9a1bdd1b) 

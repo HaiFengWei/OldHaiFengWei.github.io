@@ -5,7 +5,7 @@ date: 2017-04-27 13:01:44 +0800
 comments: true
 categories: iOS
 ---
-     Q：Quartz 2D是什么，有什么用?<br/>     A：Quartz 2D是一个二维图形绘制引擎，支持iOS环境和Mac OS X环境。<!--more-->我们可以使用Quartz 2D API来实现许多功能，如基本路径的绘制、透明度、描影、绘制阴影、透明层、颜色管理、反锯齿、PDF文档生成和PDF元数据访问。在需要的时候，Quartz 2D还可以借助图形硬件的功能。
+     Q：Quartz 2D是什么，有什么用?<br/>     A：Quartz 2D是一个二维图形绘制引擎，支持iOS环境和Mac OS X环境。我们可以使用Quartz 2D API来实现许多功能，如基本路径的绘制、透明度、描影、绘制阴影、透明层、颜色管理、反锯齿、PDF文档生成和PDF元数据访问。<!--more-->在需要的时候，Quartz 2D还可以借助图形硬件的功能。
 
 ###图形上下文
      在利用Quartz 2D绘图之前我们需要对图形上下文有个简单的了解。图形上下文(Graphics Context)是一个CGContextRef类型的数据，它的作用可分为2点：
@@ -82,9 +82,9 @@ categories: iOS
 ```
 ![示例图](https://haifengwei.github.io/images/iOS/Snip20170427_3.png)
 
-     至于画一些圆形、矩形、三角形之类的都相似，可以看[demo](https://github.com/HaiFengWei/Quartz2D_Demo),里有详细步骤就不一一写上去了。<br/>     [点这里进入demo](https://github.com/HaiFengWei/Quartz2D_Demo)
+     至于画一些圆形、矩形、三角形之类的代码都有些相似，就不具体写了，可以看[demo](https://github.com/HaiFengWei/Quartz2D_Demo),里有详细步骤注释，也可以看看我的参考文章。<br/>     [点这里进入demo](https://github.com/HaiFengWei/Quartz2D_Demo)
 
-文章参考：[《iOS开发系列--打造自己的“美图秀秀”》](http://www.cnblogs.com/kenshincui/p/3959951.html#basicDraw)、[《iOS开发UI篇—Quartz2D简单介绍》](http://www.cnblogs.com/wendingding/p/3778940.html)
+参考文章：[《iOS开发系列--打造自己的“美图秀秀”》](http://www.cnblogs.com/kenshincui/p/3959951.html#basicDraw)、[《iOS开发UI篇—Quartz2D简单介绍》](http://www.cnblogs.com/wendingding/p/3778940.html)
 
 
          
