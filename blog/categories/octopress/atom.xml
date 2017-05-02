@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-05-02T10:55:19+08:00</updated>
+  <updated>2017-05-02T11:03:42+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -82,22 +82,14 @@ footer: false
 
 <p>     至于在哪里添加评论栏位置，只是描述一下我的问题，可能对于你们并不一定适用。</p>
 
-<p>     我集成的第三方主题是<a href="https://github.com/bhrigu123/abacus">《abacus theme》</a>，文章详情页是/source/_layouts/post.html，里面可以添加和删除文章详情页的控件（我特么一个一个文件试过来发现的o(╯□╰)o）。那么，添加评论栏也理所当然这里了，于是我修改了下面一段代码</p>
+<p>     我集成的第三方主题是<a href="https://github.com/bhrigu123/abacus">《abacus theme》</a>，文章详情页是/source/_layouts/post.html，里面可以添加和删除文章详情页的控件（我特么一个一个文件试过来发现的o(╯□╰)o）。那么，添加评论栏也理所当然这里了，于是我修改了下面一段代码（去掉\）</p>
 
 <pre><code> &lt;/article&gt;
     
-    <!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132125"></script>
-<!-- UY END -->
-
+    {\% include post/share_comment.html \%}
 </code></pre>
 
-<p>     这里主要是在详情页尾添加一句<code><!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132125"></script>
-<!-- UY END -->
-</code></p>
+<p>     这里主要是在详情页尾添加一句<code>{\% include post\/share_comment.html \%}</code></p>
 
 <p>     另外将/_config.yml里的Comments也设置下，<code>disqus_short_name</code>得值随意写，<code>disqus_show_comment_count</code>值为true（如下）。</p>
 

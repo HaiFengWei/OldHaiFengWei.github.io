@@ -199,7 +199,7 @@
 
 <p>     至于在哪里添加评论栏位置，只是描述一下我的问题，可能对于你们并不一定适用。</p>
 
-<p>     我集成的第三方主题是<a href="https://github.com/bhrigu123/abacus">《abacus theme》</a>，文章详情页是/source/_layouts/post.html，里面可以添加和删除文章详情页的控件（我特么一个一个文件试过来发现的o(╯□╰)o）。那么，添加评论栏也理所当然这里了，于是我修改了下面一段代码</p>
+<p>     我集成的第三方主题是<a href="https://github.com/bhrigu123/abacus">《abacus theme》</a>，文章详情页是/source/_layouts/post.html，里面可以添加和删除文章详情页的控件（我特么一个一个文件试过来发现的o(╯□╰)o）。那么，添加评论栏也理所当然这里了，于是我修改了下面一段代码（去掉\）</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -213,29 +213,13 @@
 </span><span class='line'>    
 </span><span class='line'>      &lt;section&gt;
 </span><span class='line'>        &lt;h2&gt;Comments&lt;/h2&gt;
-</span><span class='line'>        &lt;div id="disqus_thread" aria-live="polite"&gt;<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-&lt;/div&gt;
+</span><span class='line'>        &lt;div id="disqus_thread" aria-live="polite"&gt;{\% include post/disqus_thread.html \%}&lt;/div&gt;
 </span><span class='line'>      &lt;/section&gt;
 </span><span class='line'>    
-</span><span class='line'>    <!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132125"></script>
-<!-- UY END -->
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>    {\% include post/share_comment.html \%}</span></code></pre></td></tr></table></div></figure>
 
 
-<p>     这里主要是在详情页尾添加一句``` <!-- UY BEGIN --></p>
-
-<div id="uyan_frame"></div>
-
-
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132125"></script>
-
-
-<!-- UY END -->
-
-
-<p>```</p>
+<p>     这里主要是在详情页尾添加一句<code>{\% include post\/share_comment.html \%}</code></p>
 
 <p>     另外将/_config.yml里的Comments也设置下，<code>disqus_short_name</code>得值随意写，<code>disqus_show_comment_count</code>值为true（如下）。</p>
 
