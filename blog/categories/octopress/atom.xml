@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | haifeng's blog]]></title>
   <link href="http://haifengwei.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://haifengwei.github.io/"/>
-  <updated>2017-05-02T11:03:42+08:00</updated>
+  <updated>2017-05-02T11:07:48+08:00</updated>
   <id>http://haifengwei.github.io/</id>
   <author>
     <name><![CDATA[haifeng]]></name>
@@ -78,7 +78,7 @@ footer: false
 
 <h3>三、如何文章详情页添加评论栏:</h3>
 
-<p>     我这里的评论是用的友言，至于集成友言可参考巧神的<a href="http://blog.devtang.com/2012/02/10/setup-blog-based-on-github/">《象写程序一样写博客：搭建基于github的博客》</a>，我这里是将<code>weibo_share</code>改为<code>share_comment</code>。</p>
+<p>     我的评论是用的友言，至于集成友言可参考巧神的<a href="http://blog.devtang.com/2012/02/10/setup-blog-based-on-github/">《象写程序一样写博客：搭建基于github的博客》</a>，我这里是将<code>weibo_share</code>改为<code>share_comment</code>。</p>
 
 <p>     至于在哪里添加评论栏位置，只是描述一下我的问题，可能对于你们并不一定适用。</p>
 
