@@ -71,19 +71,19 @@ footer: false
 
      至于在哪里添加评论栏位置，只是描述一下我的问题，可能对于你们并不一定适用。
 
-     我集成的第三方主题是[《abacus theme》](https://github.com/bhrigu123/abacus)，文章详情页是/source/_layouts/post.html，里面可以添加和删除文章详情页的控件（我特么一个一个文件试过来发现的o(╯□╰)o）。那么，添加评论栏也理所当然这里了，于是我修改了下面一段代码
+     我集成的第三方主题是[《abacus theme》](https://github.com/bhrigu123/abacus)，文章详情页是/source/_layouts/post.html，里面可以添加和删除文章详情页的控件（我特么一个一个文件试过来发现的o(╯□╰)o）。那么，添加评论栏也理所当然这里了，于是我修改了下面一段代码（去掉\\）
 
 ```
  </article>
     {% if site.disqus_short_name and page.comments == true %}
       <section>
         <h2>Comments</h2>
-        <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
+        <div id="disqus_thread" aria-live="polite">{\% include post/disqus_thread.html \%}</div>
       </section>
     {% endif %}
-    {% include post/share_comment.html %}
+    {\% include post/share_comment.html \%}
 ```
-     这里主要是在详情页尾添加一句``` {% include post/share_comment.html %}```
+     这里主要是在详情页尾添加一句``` {\% include post\/share_comment.html \%}```
 
      另外将/_config.yml里的Comments也设置下，```disqus_short_name```得值随意写，```disqus_show_comment_count```值为true（如下）。
 
